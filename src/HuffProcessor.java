@@ -87,6 +87,7 @@ public class HuffProcessor {
 			HuffNode t = new HuffNode(-1,left.myWeight+right.myWeight, left, right);
 			pq.add(t);
 		}
+
 		HuffNode root = pq.remove();
 		return root;
 	}
@@ -102,17 +103,18 @@ public class HuffProcessor {
 		}
 		if (root.myLeft == null && root.myRight == null) {
 			encodings[root.myValue] = check;
-
-			return encodings;
 		}
 		if (root.myRight != null) {
-			check += "1";
 			encodings = makePath(root.myRight, check, encodings);
+			check += "1";
+
 
 		}
+
 		if(root.myLeft != null) {
-			check += "0";
 			encodings = makePath(root.myLeft, check, encodings);
+			check += "0";
+
 		}
 
 		return encodings;
