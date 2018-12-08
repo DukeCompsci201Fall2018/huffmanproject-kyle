@@ -60,9 +60,16 @@ public class HuffProcessor {
 		int[] counts = new int[ALPH_SIZE+1];
 		int word = in.readBits(BITS_PER_WORD);
 		while(word != -1) {
-			counts[word] += 1;
+			System.out.println(counts[word]);
+			if(counts[word]<1){
+				counts[word] = 1;
+			}else{
+				counts[word]++;
+			}
+			System.out.println("word" + word + "freq" + counts[word]);
 			word = in.readBits(BITS_PER_WORD);
 		}
+
 		counts[PSEUDO_EOF] = 1;
 		return counts;
 	}
@@ -163,6 +170,7 @@ public class HuffProcessor {
 		}
 
 		HuffNode root = readTreeHeader(in);
+		in.reset();
 		readCompressedBits(root, in, out);
 		out.close();
 	}
