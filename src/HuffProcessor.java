@@ -167,8 +167,6 @@ public class HuffProcessor {
 		}
 
 		HuffNode root = readTreeHeader(in);
-		in.reset();
-		bits = in.readBits(BITS_PER_INT);
 		readCompressedBits(root, in, out);
 		out.close();
 	}
