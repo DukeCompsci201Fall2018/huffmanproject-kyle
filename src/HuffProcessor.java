@@ -21,7 +21,8 @@ public class HuffProcessor {
 	public static final int HUFF_TREE  = HUFF_NUMBER | 1;
 
 	private final int myDebugLevel;
-	
+	//HuffProcessor hp = new HuffProcessor(HuffProcessor.DEBUG_HIGH);
+
 	public static final int DEBUG_HIGH = 4;
 	public static final int DEBUG_LOW = 1;
 	
@@ -92,6 +93,7 @@ public class HuffProcessor {
 
 		if (root.myLeft == null && root.myRight == null) {
 			encodings[root.myValue] = check;
+
 			return;
 		}
 
@@ -131,11 +133,12 @@ public class HuffProcessor {
 	}
 	private void writeCompressedBits(String[] codings, BitInputStream in, BitOutputStream out) {
 		String code = "";
-		for (int i = 0; i < codings.length; i++) {
-			code = codings[i];
-			if(code != null) {
-				out.writeBits(code.length(), Integer.parseInt(code, 2));
-			}
+		int check = in.readBits(BITS_PER_WORD);
+		while(check != -1){
+			code = codings[check];
+			out.writeBits(code.length(), Integer.parseInt(code, 2));
+
+			check = in.readBits(BITS_PER_WORD);
 		}
 		code = codings[PSEUDO_EOF];
 		out.writeBits(code.length(), Integer.parseInt(code, 2));
