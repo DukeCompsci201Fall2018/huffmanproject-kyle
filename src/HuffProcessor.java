@@ -94,30 +94,20 @@ public class HuffProcessor {
 
 	private String[] makeCodingsFromTree(HuffNode root){
 		String[] encodings = new String[ALPH_SIZE + 1];
-		encodings = makePath(root,"",encodings);
+		 makePath(root,"",encodings);
 		return encodings;
 	}
-	private String[] makePath(HuffNode root, String check, String[] encodings) {
+	private void makePath(HuffNode root, String check, String[] encodings) {
 		if(root == null){
-			return encodings;
+			return;
 		}
 		if (root.myLeft == null && root.myRight == null) {
 			encodings[root.myValue] = check;
-		}
-		if (root.myRight != null) {
-			encodings = makePath(root.myRight, check, encodings);
-			check += "1";
-
-
+			return;
 		}
 
-		if(root.myLeft != null) {
-			encodings = makePath(root.myLeft, check, encodings);
-			check += "0";
-
-		}
-
-		return encodings;
+		makePath(root.myLeft, check+"0", encodings);
+		makePath(root.myRight, check+"1", encodings);
 	}
 
 
