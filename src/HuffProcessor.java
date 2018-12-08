@@ -15,7 +15,7 @@ public class HuffProcessor {
 
 	public static final int BITS_PER_WORD = 8;
 	public static final int BITS_PER_INT = 32;
-	public static final int ALPH_SIZE = (1 << BITS_PER_WORD); 
+	public static final int ALPH_SIZE = (1 << BITS_PER_WORD);
 	public static final int PSEUDO_EOF = ALPH_SIZE;
 	public static final int HUFF_NUMBER = 0xface8200;
 	public static final int HUFF_TREE  = HUFF_NUMBER | 1;
@@ -58,15 +58,14 @@ public class HuffProcessor {
 
 	private int[] readForCounts(BitInputStream in){
 		int[] counts = new int[ALPH_SIZE+1];
+
 		int word = in.readBits(BITS_PER_WORD);
 		while(word != -1) {
-			System.out.println(counts[word]);
 			if(counts[word]<1){
 				counts[word] = 1;
 			}else{
 				counts[word]++;
 			}
-			System.out.println("word" + word + "freq" + counts[word]);
 			word = in.readBits(BITS_PER_WORD);
 		}
 
@@ -75,13 +74,12 @@ public class HuffProcessor {
 	}
 
 	private HuffNode makeTreeFromCounts(int[] counts){
-		PriorityQueue<HuffNode> pq = new PriorityQueue<>();
+		PriorityQueue<HuffNode> pq = new PriorityQueue<>(HuffNode::compareTo);
 		for(int i = 0; i < counts.length; i++){
 			if(counts[i] > 0){
 				pq.add(new HuffNode(i,counts[i],null,null));
 			}
 		}
-
 
 		while(pq.size() > 1){
 			HuffNode left = pq.remove();
@@ -129,6 +127,7 @@ public class HuffProcessor {
 		if(root.myLeft == null && root.myRight == null){
 			out.writeBits(1, 1);
 			out.writeBits(BITS_PER_WORD, root.myValue);
+			System.out.print(out);
 			return;
 		}
 		out.writeBits(1, 0);
