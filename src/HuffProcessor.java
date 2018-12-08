@@ -55,7 +55,7 @@ public class HuffProcessor {
 		out.close();
 	}
 
-	public int[] readForCounts(BitInputStream in){
+	private int[] readForCounts(BitInputStream in){
 		int[] counts = new int[ALPH_SIZE+1];
 		counts[PSEUDO_EOF] = 1;
 		int word = in.readBits(BITS_PER_WORD);
@@ -66,7 +66,7 @@ public class HuffProcessor {
 
 		return counts;
 	}
-	public HuffNode makeTreeFromCounts(int[] counts){
+	private HuffNode makeTreeFromCounts(int[] counts){
 		PriorityQueue<HuffNode> pq = new PriorityQueue<>();
 		for(int i = 0; i < counts.length; i++){
 			if(counts[i] > 0){
@@ -83,12 +83,12 @@ public class HuffProcessor {
 		return root;
 	}
 
-	public String[] makeCodingsFromTree(HuffNode root){
+	private String[] makeCodingsFromTree(HuffNode root){
 		String[] encodings = new String[ALPH_SIZE + 1];
 		makePath(root,"",encodings);
 		return encodings;
 	}
-	public void makePath(HuffNode root, String check, String[] encodings) {
+	private void makePath(HuffNode root, String check, String[] encodings) {
 
 		if (root.myLeft == null && root.myRight == null) {
 			encodings[root.myValue] = check;
@@ -107,7 +107,7 @@ public class HuffProcessor {
 		}
 
 	}
-	public void writeHeader(HuffNode root, BitOutputStream out){
+	private void writeHeader(HuffNode root, BitOutputStream out){
 
 
 		if(root.myLeft == null && root.myRight == null){
@@ -129,9 +129,9 @@ public class HuffProcessor {
 			writeHeader(root.myRight, out);
 		}
 	}
-	public void writeCompressedBits(String[] codings, BitInputStream in, BitOutputStream out) {
+	private void writeCompressedBits(String[] codings, BitInputStream in, BitOutputStream out) {
 		String code = "";
-		for (int i = 0; i < codings.length; i++) {
+		for (int i = 0; i < codings.length - 1; i++) {
 			code = codings[i];
 			out.writeBits(code.length(), Integer.parseInt(code, 2));
 		}
@@ -148,7 +148,7 @@ public class HuffProcessor {
 	 * @param out
 	 *            Buffered bit stream writing to the output file.
 	 */
-	 void decompress(BitInputStream in, BitOutputStream out) {
+	 public void decompress(BitInputStream in, BitOutputStream out) {
 
 
 
