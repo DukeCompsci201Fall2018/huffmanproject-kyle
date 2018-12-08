@@ -91,7 +91,7 @@ public class HuffProcessor {
 	private void makePath(HuffNode root, String check, String[] encodings) {
 
 		if (root.myLeft == null && root.myRight == null) {
-			encodings[root.myValue] = check;
+			encodings[root.myWeight] = check;
 			return;
 		}
 
