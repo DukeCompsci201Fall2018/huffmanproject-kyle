@@ -106,12 +106,12 @@ public class HuffProcessor {
 			return encodings;
 		}
 		if (root.myRight != null) {
-			check += "0";
+			check += "1";
 			encodings = makePath(root.myRight, check, encodings);
 
 		}
 		if(root.myLeft != null) {
-			check += "1";
+			check += "0";
 			encodings = makePath(root.myLeft, check, encodings);
 		}
 
