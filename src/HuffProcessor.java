@@ -73,6 +73,7 @@ public class HuffProcessor {
 		counts[PSEUDO_EOF] = 1;
 		return counts;
 	}
+
 	private HuffNode makeTreeFromCounts(int[] counts){
 		PriorityQueue<HuffNode> pq = new PriorityQueue<>();
 		for(int i = 0; i < counts.length; i++){
@@ -94,32 +95,32 @@ public class HuffProcessor {
 
 	private String[] makeCodingsFromTree(HuffNode root){
 		String[] encodings = new String[ALPH_SIZE + 1];
-		makePath(root,"",encodings);
+		encodings = makePath(root,"",encodings);
 		return encodings;
 	}
-	private void makePath(HuffNode root, String check, String[] encodings) {
+	private String[] makePath(HuffNode root, String check, String[] encodings) {
 		if(root == null){
-			return;
+			return encodings;
 		}
-
 		if (root.myLeft == null && root.myRight == null) {
 			encodings[root.myValue] = check;
 
-			return;
+			return encodings;
 		}
-
 		if (root.myRight != null) {
 			check += "1";
-			makePath(root.myRight, check, encodings);
+			encodings = makePath(root.myRight, check, encodings);
 
 		}
-
 		if(root.myLeft != null) {
 			check += "0";
-			makePath(root.myLeft, check, encodings);
+			encodings = makePath(root.myLeft, check, encodings);
 		}
 
+		return encodings;
 	}
+
+
 	private void writeHeader(HuffNode root, BitOutputStream out){
 		if(root == null){
 			return;
