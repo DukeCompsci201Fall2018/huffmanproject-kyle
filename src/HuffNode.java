@@ -32,9 +32,7 @@ public class HuffNode implements Comparable<HuffNode> {
 	 *            is stored as value of node
 	 * @param weight
 	 *            is weight of node
-	 * @param ltree
 	 *            is left subtree
-	 * @param rtree
 	 *            is right subtree
 	 */
 	public HuffNode(int value, int weight, HuffNode left, HuffNode right) {
@@ -52,7 +50,7 @@ public class HuffNode implements Comparable<HuffNode> {
 	 */
 	@Override
 	public int compareTo(HuffNode other) {
-		return other.myWeight - myWeight;
+		return myWeight - other.myWeight;
 	}
 
 	@Override
