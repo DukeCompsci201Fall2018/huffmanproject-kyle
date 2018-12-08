@@ -91,7 +91,7 @@ public class HuffProcessor {
 	private void makePath(HuffNode root, String check, String[] encodings) {
 
 		if (root.myLeft == null && root.myRight == null) {
-			encodings[root.myWeight] = check;
+			encodings[root.myValue] = check;
 			return;
 		}
 
@@ -131,9 +131,11 @@ public class HuffProcessor {
 	}
 	private void writeCompressedBits(String[] codings, BitInputStream in, BitOutputStream out) {
 		String code = "";
-		for (int i = 0; i < codings.length - 1; i++) {
+		for (int i = 0; i < codings.length; i++) {
 			code = codings[i];
-			out.writeBits(code.length(), Integer.parseInt(code, 2));
+			if(code != null) {
+				out.writeBits(code.length(), Integer.parseInt(code, 2));
+			}
 		}
 		code = codings[PSEUDO_EOF];
 		out.writeBits(code.length(), Integer.parseInt(code, 2));
