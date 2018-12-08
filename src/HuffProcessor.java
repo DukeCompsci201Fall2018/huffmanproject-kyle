@@ -58,7 +58,9 @@ public class HuffProcessor {
 	 * @param out
 	 *            Buffered bit stream writing to the output file.
 	 */
-	public void decompress(BitInputStream in, BitOutputStream out) {
+	 void decompress(BitInputStream in, BitOutputStream out) {
+
+
 
 		int bits = in.readBits(BITS_PER_INT);
 		if (bits != HUFF_TREE) {
@@ -73,7 +75,7 @@ public class HuffProcessor {
 		out.close();
 	}
 
-	public HuffNode readTreeHeader(BitInputStream in){
+	private HuffNode readTreeHeader(BitInputStream in){
 		int bit = in.readBits(1);
 		if(bit == -1){
 			throw new HuffException("Reading bits failed!");
@@ -90,7 +92,7 @@ public class HuffProcessor {
 
 	}
 
-	public void readCompressedBits(HuffNode root, BitInputStream in, BitOutputStream out){
+	private void readCompressedBits(HuffNode root, BitInputStream in, BitOutputStream out){
 		int bits;
 		HuffNode current = root;
 		while(true){
@@ -110,7 +112,7 @@ public class HuffProcessor {
 						break;
 					}
 					else{
-						out.writeBits(BITS_PER_WORD+1, current.myValue);
+						out.writeBits(BITS_PER_WORD, current.myValue);
 						current = root;
 					}
 
