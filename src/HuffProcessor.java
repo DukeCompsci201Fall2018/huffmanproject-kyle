@@ -115,7 +115,6 @@ public class HuffProcessor {
 		if(root == null){
 			return;
 		}
-
 		if(root.myLeft == null && root.myRight == null){
 			out.writeBits(1, 1);
 			out.writeBits(BITS_PER_WORD+1, root.myValue);

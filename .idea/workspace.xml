@@ -48,14 +48,14 @@
           <entry key="hello" value="13" />
           <entry key="hello2" value="14" />
           <entry key="hf" value="26" />
-          <entry key="java" value="4016" />
+          <entry key="java" value="4043" />
           <entry key="test1" value="8" />
           <entry key="testing" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4016" />
+          <entry key="JAVA" value="4043" />
           <entry key="PLAIN_TEXT" value="81" />
         </counts>
       </usages-collector>
@@ -66,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HuffProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+            <state relative-caret-position="257">
+              <caret line="115" column="20" selection-start-line="115" selection-start-column="20" selection-end-line="115" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -153,7 +153,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544300279059" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544300522627" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -327,8 +327,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HuffProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+        <state relative-caret-position="257">
+          <caret line="115" column="20" selection-start-line="115" selection-start-column="20" selection-end-line="115" selection-end-column="20" />
         </state>
       </provider>
     </entry>
